@@ -8,13 +8,13 @@ namespace CPE200Lab1
 {
     public class CalculatorEngine
     {
-        private bool isNumber(string str)
+        public bool isNumber(string str)
         {
             double retNum;
             return Double.TryParse(str, out retNum);
         }
 
-        private bool isOperator(string str)
+        public bool isOperator(string str)
         {
             switch (str)
             {
@@ -71,7 +71,7 @@ namespace CPE200Lab1
                                 return result.ToString();
                             }
                         }
-                        catch (Exception)
+                        catch (InvalidOperationException)
                         {
                             return "E";
                         }
@@ -104,7 +104,7 @@ namespace CPE200Lab1
                                 return result.ToString();
                             }
                         }
-                        catch (Exception)
+                        catch (InvalidOperationException)
                         {
                             return "E";
                         }
@@ -130,7 +130,7 @@ namespace CPE200Lab1
                     {
                         double result;
                         string[] parts;
-                        int remainLength;
+                       // int remainLength;
 
                         result = (Convert.ToDouble(firstOperand) / Convert.ToDouble(secondOperand));
                         // split between integer part and fractional part
@@ -147,9 +147,9 @@ namespace CPE200Lab1
                                 return "E";
                             }
                             // calculate remaining space for fractional part.
-                            remainLength = maxOutputSize - parts[0].Length - 1;
+                           // remainLength = maxOutputSize - parts[0].Length - 1;
                             // trim the fractional part gracefully. =
-                            return result.ToString("N" + remainLength);
+                            return result.ToString("0.####");
                         }
 
                     }
